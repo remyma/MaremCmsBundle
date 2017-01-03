@@ -1,0 +1,6 @@
+marem_cms_client_page:
+    path:     /{url}
+    defaults: { _controller: MaremCmsClientBundle:Page:displayPage }
+    requirements:
+      url: .+
+

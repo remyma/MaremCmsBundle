@@ -1,0 +1,12 @@
+{% extends 'LeBonCadreShopBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1 class="page-title">{{ content.title|raw }}</h1>
+    </div>
+
+    {% for article in content.articles %}
+        {{ article.title|raw }}
+    {% endfor %}
+{% endblock %}
+

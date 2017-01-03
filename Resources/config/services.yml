@@ -1,0 +1,25 @@
+services:
+
+  marem_cms_client.service.contentservice:
+    class: Marem\Bundle\CmsClientBundle\Service\ContentService
+    arguments:
+      - @marem_cms_client.service.sulu_http_client
+      - %marem_cms_client.parameter.marketing_contents%
+      - %marem_cms_client.parameter.navs%
+
+  marem_cms_client.service.sulu_http_client:
+      class: Marem\Bundle\CmsClientBundle\Service\SuluHttpClient
+      arguments:
+        - %marem_cms_client.parameter.sulu_url%
+        - %marem_cms_client.parameter.default_webspace%
+
+
+
+  # -------------------
+  # Twig extensions
+  # -------------------
+  marem_cms_client.twig.extension.nodes:
+    class: Marem\Bundle\CmsClientBundle\Twig\SuluPagesExtension
+    arguments: [@marem_cms_client.service.contentservice, %sylius_locale.locale%]
+    tags:
+      - name: twig.extension
