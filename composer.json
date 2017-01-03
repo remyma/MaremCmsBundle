@@ -1,0 +1,21 @@
+{
+    "name": "marem/cms-client-bundle",
+    "type": "symfony-bundle",
+    "description": "Cms http client gateway. Can interact with cms like sulu",
+    "keywords": ["symfony", "cms", "sulu"],
+    "homepage": "https://github.com/remyma/MaremCmsBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "Matthieu REMY",
+            "email":    "remy.matthieu@gmail.com",
+            "homepage": "https://github.com/remyma"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Marem\\Bundle\\CmsClientBundle\\": "src/"
+        }
+    }
+}
+
