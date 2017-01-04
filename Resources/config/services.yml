@@ -19,7 +19,7 @@ services:
   # Twig extensions
   # -------------------
   marem_cms_client.twig.extension.nodes:
-    class: Marem\Bundle\CmsClientBundle\Twig\SuluPagesExtension
+    class: Marem\Bundle\CmsClientBundle\Twig\CmsPagesExtension
     arguments: [@marem_cms_client.service.contentservice, %sylius_locale.locale%]
     tags:
       - name: twig.extension

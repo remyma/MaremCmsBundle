@@ -66,6 +66,6 @@ class SuluPagesExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'marem_sulu_pages';
+        return 'marem_cms_pages';
     }
 }
