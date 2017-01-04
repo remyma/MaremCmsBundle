@@ -7,7 +7,7 @@ use Marem\Bundle\CmsClientBundle\Service\ContentService;
 /**
  * @author marem
  */
-class SuluPagesExtension extends \Twig_Extension
+class CmsPagesExtension extends \Twig_Extension
 {
     /**
      * @var string

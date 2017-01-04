@@ -13,7 +13,7 @@ use Symfony\Component\VarDumper\VarDumper;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class MaremSuluClientExtension extends Extension
+class MaremCmsClientExtension extends Extension
 {
     /**
      * {@inheritdoc}
