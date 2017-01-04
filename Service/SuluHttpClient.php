@@ -2,9 +2,8 @@
 
 namespace Marem\Bundle\CmsClientBundle\Service;
 
-use Guzzle\Http\Message\Request;
-use Guzzle\Http\Message\RequestInterface;
-use Guzzle\Service\Client;
+use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\VarDumper\VarDumper;
 
 /**
@@ -47,26 +46,23 @@ class SuluHttpClient
      */
     public function getJson($endpoint, array $parameters = null)
     {
-        $client = new Client($this->suluUrl);
-        $request = $client->get($endpoint);
-        $request->setHeader('Accept', 'application/json');
+        $client = new Client([
+            'base_uri' => $this->suluUrl,
+            'headers' => ['Accept' => 'application/json'],
+        ]);
 
-        $query = $request->getQuery();
-
-        if (count($parameters) > 0) {
-            foreach ($parameters as $key => $value) {
-                $query->set($key, $value);
-            }
-        }
-
-        if ($query->get(self::PARAM_WEBSPACE) == null) {
-            $query->set(self::PARAM_WEBSPACE, $this->defaultWebspace);
+        if ($parameters != null && !array_key_exists(self::PARAM_WEBSPACE, $parameters)) {
+            $parameters[self::PARAM_WEBSPACE] = $this->defaultWebspace;
         }
 
         $json = [];
         try {
-            $response = $request->send();
-            $json = $response->json();
+            /* @var ResponseInterface $response */
+            $response = $client->request('GET', $endpoint, [
+                'query' => $parameters
+            ]);
+
+            $json = json_decode($response->getBody(), true);
         } catch(\Exception $e) {
             // TODO : log and manage exception.
         }
